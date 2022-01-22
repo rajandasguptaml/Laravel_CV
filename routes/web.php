@@ -1,6 +1,8 @@
 <?php
 
+// use PDF;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CvController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/inputdata', function () {
+    return view('inputdata');
 });
+
+
+Route::get('/', [App\Http\Controllers\CvController::class, 'showCVs'])->name('admin.home');
+
+Route::get('/laravel/pdf', [CvController::class, 'createPDF']);
+
